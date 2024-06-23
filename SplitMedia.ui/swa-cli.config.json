@@ -3,12 +3,12 @@
   "configurations": {
     "pazoot.ui": {
       "appLocation": ".",
-      "outputLocation": "build",
+      "outputLocation": "dist",
       "appBuildCommand": "npm run build",
       "run": "npm run dev",
       "appDevserverUrl": "http://localhost:5173",
-      "appName": "pazoot.ui",
-      "resourceGroup": "rg-pazoot"
+      "appName": "SplitMedia.ui",
+      "resourceGroup": "rg-SplitMedia"
     }
   }
 }
