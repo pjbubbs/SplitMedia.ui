@@ -14,8 +14,8 @@ export default function Root() {
                                 <div className="main_home_slider text-center">
                                     <div className="single_home_slider">
                                         <div className="main_home wow fadeInUp" data-wow-duration="700ms">
-                                            <h3>Our Clients Are Our First Priority</h3>
-                                            <h1>WELCOME TO BINO</h1>
+                                            <h3>Your Media Your Way</h3>
+                                            <h1>WELCOME TO SPLIT MEDIA</h1>
                                             <div className="separator"></div>
                                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting
                                                 industry. Lorem Ipsum has been the industry's
@@ -23,9 +23,9 @@ export default function Root() {
                                                 galley
                                                 of type and scrambled it to make a type specimen book.</p>
                                             <div className="home_btn">
-                                                <a href="https://bootstrapthemes.co" className="btn btn-lg m_t_10">GET
+                                                <a href="register" className="btn btn-lg m_t_10">GET
                                                     STARTED NOW</a>
-                                                <a href="https://bootstrapthemes.co" className="btn btn-default">LEARN
+                                                <a href="learn-more" className="btn btn-default">LEARN
                                                     MORE</a>
                                             </div>
 
