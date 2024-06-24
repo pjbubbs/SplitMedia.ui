@@ -8,6 +8,7 @@ import './index.css'
 import Root from './routes/root';
 import ErrorPage from './error-page';
 import AboutUs from './routes/aboutUs';
+import { RecoilRoot } from 'recoil';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} /> 
+    <RecoilRoot>
+      <RouterProvider router={router} /> 
+    </RecoilRoot>
   </React.StrictMode>,
 )
