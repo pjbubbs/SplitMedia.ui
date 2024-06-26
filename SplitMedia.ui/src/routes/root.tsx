@@ -23,7 +23,7 @@ export default function Root() {
                                                 galley
                                                 of type and scrambled it to make a type specimen book.</p>
                                             <div className="home_btn">
-                                                <a href="register" className="btn btn-lg m_t_10">GET
+                                                <a href="/register" className="btn btn-lg m_t_10">GET
                                                     STARTED NOW</a>
                                                 <a href="learn-more" className="btn btn-default">LEARN
                                                     MORE</a>

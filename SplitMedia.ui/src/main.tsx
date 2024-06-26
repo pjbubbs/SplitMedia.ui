@@ -24,6 +24,10 @@ import './css/plugins.css'
 import './css/style.css'
 */
 import './css/responsive.css'
+import ContactUs from './routes/contactUs';
+import PrivacyPolicy from './routes/Terms/privacyPolicy';
+import CookiePolicy from './routes/Terms/cookiePolicy';
+
 
 const router = createBrowserRouter([
   {
@@ -34,8 +38,21 @@ const router = createBrowserRouter([
   {
     path: "about-us",
     element: <AboutUs />,
-  }
+  },
+  {
+    path: "contact-us",
+    element: <ContactUs />,
+  },
+  {
+    path: "cookie-policy",
+    element: <CookiePolicy />
+  },
+  {
+    path: "privacy-policy",
+    element: <PrivacyPolicy />
+  }  
 ]);
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
