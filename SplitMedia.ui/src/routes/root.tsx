@@ -14,8 +14,9 @@ export default function Root() {
                                 <div className="main_home_slider text-center">
                                     <div className="single_home_slider">
                                         <div className="main_home wow fadeInUp" data-wow-duration="700ms">
-                                            <h3>Your Media Your Way</h3>
-                                            <h1>WELCOME TO SPLIT MEDIA</h1>
+                                            <h2>Your Media Your Way</h2>
+                                            <br></br>
+                                            <h3>WELCOME TO</h3><h1>SPLIT MEDIA</h1>
                                             <div className="separator"></div>
                                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting
                                                 industry. Lorem Ipsum has been the industry's
