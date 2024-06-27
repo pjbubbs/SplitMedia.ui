@@ -27,6 +27,7 @@ import './css/responsive.css'
 import ContactUs from './routes/contactUs';
 import PrivacyPolicy from './routes/Terms/privacyPolicy';
 import CookiePolicy from './routes/Terms/cookiePolicy';
+import Register from './routes/User/register';
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "cookie-policy",
     element: <CookiePolicy />
+  },
+  {
+    path: "register",
+    element: <Register />
   },
   {
     path: "privacy-policy",
