@@ -95,17 +95,6 @@ export default function Register(){
       
           localStorage.setItem("accessToken", JSON.stringify(authData.accessToken));
           localStorage.setItem("refreshToken", JSON.stringify(authData.refreshToken));
-      
-          console.log(JSON.stringify(authData.accessToken));
-          console.log(JSON.stringify(authData.refreshToken));
-      
-          const config = {
-            headers: { Authorization: `Bearer ${authData.accessToken}` }
-          };
-      
-          const userResponse = await axiosInstance.get("/GetBasicUser/", config);
-          const userData = userResponse.data;
-          localStorage.setItem("userInfo", JSON.stringify(userData));
 
           navigate("/");
 

@@ -1,10 +1,8 @@
+import UserSignedIn from './userSignedIn';
 
 export default function PageHeader() {
     return (
       <>
-        <div className='preloader'>
-        <div className='loaded'>&nbsp;</div>
-        </div>
         <div className="culmn">
         <header id="main_menu" className="header navbar-fixed-top">
             <div className="main_menu_bg">
@@ -21,26 +19,22 @@ export default function PageHeader() {
                                             <span className="icon-bar"></span>
                                             <span className="icon-bar"></span>
                                         </button>
-                                        <a className="navbar-brand" href="#home">
-                                            <img src="assets/images/logo.png" />
+                                        <a className="navbar-brand" href="/">
+                                            <img src="https://pazootstorage.blob.core.windows.net/upload-images/logo.png" />
                                         </a>
                                     </div>
 
                                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                         <ul className="nav navbar-nav navbar-right">
-                                            <li><a href="#home">HOME</a></li>
-                                            <li><a href="#history">ABOUT US</a></li>
-                                            <li><a href="#portfolio">PORTFOLIO</a></li>
-                                            <li><a href="#pricing">PRICING</a></li>
-                                            <li><a href="#team">TEAM</a></li>
-                                            <li><a href="#blog">BLOG</a></li>
-                                            <li><a href="#contact">CONTACT</a></li>
+                                            <li><a href="/">HOME</a></li>
+                                            <li><a href="/about-us">ABOUT US</a></li>
+                                            <li><a href="/pricing">PRICING</a></li>
+                                            <li><a href="/team">TEAM</a></li>
+                                            <li><a href="/contact-us">CONTACT</a></li>
+                                            <li><UserSignedIn></UserSignedIn></li>
                                         </ul>
-
-
                                     </div>
-
                                 </div>
                             </nav>
                         </div>
