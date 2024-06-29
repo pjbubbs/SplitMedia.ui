@@ -1,8 +1,10 @@
+import PageHeader from '../../components/pageHeader'
 
 export default function LearnMore() {
     return (
-      <>        
-       <h1>Learn More</h1>
+      <>      
+        <PageHeader/>  
+        <h1>Learn More</h1>
       </>
     );
   }
