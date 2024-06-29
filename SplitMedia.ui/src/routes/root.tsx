@@ -1,18 +1,6 @@
 import PageHeader from '../components/pageHeader'
-import '../App.css'
-import '../css/iconfont.css'
-import '../css/slick/slick.css'
-import '../css/slick/slick-theme.css'
-import '../css/font-awesome.min.css'
-import '../css/jquery.fancybox.css'
-import '../css/bootstrap.css'
-import '../css/bootstrap.min.css'
-import '../css/magnific-popup.css'
-import '../css/plugins.css'
+import 'bootstrap/dist/css/bootstrap.css'
 import '../css/style.css'
-import '../css/responsive.css'
-import '../index.css'
-
 
 export default function Root() {
   

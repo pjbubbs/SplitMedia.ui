@@ -3,48 +3,30 @@ import UserSignedIn from './userSignedIn';
 export default function PageHeader() {
     return (
       <>
-        <div className="culmn">
-        <header id="main_menu" className="header navbar-fixed-top">
-            <div className="main_menu_bg">
-                <div className="container">
-                    <div className="row">
-                        <div className="nave_menu">
-                            <nav className="navbar navbar-default">
-                                <div className="container-fluid">
-                                    <div className="navbar-header">
-                                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
-                                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                            <span className="sr-only">Toggle navigation</span>
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                            <span className="icon-bar"></span>
-                                        </button>
-                                        <a className="navbar-brand" href="/">
-                                            <img src="https://pazootstorage.blob.core.windows.net/upload-images/logo.png" />
-                                        </a>
-                                    </div>
+     <nav className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="SplitMedia navigation bar">
 
-                                    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div className="container">
+        <a className="navbar-brand" href="/">Split Media</a>
 
-                                        <ul className="nav navbar-nav navbar-right">
-                                            <li><a href="/">HOME</a></li>
-                                            <li><a href="/about-us">ABOUT US</a></li>
-                                            <li><a href="/pricing">PRICING</a></li>
-                                            <li><a href="/team">TEAM</a></li>
-                                            <li><a href="/contact-us">CONTACT</a></li>
-                                            <li><UserSignedIn></UserSignedIn></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsSplitMedia" aria-controls="navbarsSplitMedia" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-                </div>
-
-            </div>
-        </header>
-    </div>
-    </>
+        <div className="collapse navbar-collapse" id="navbarsSplitMedia">
+          <ul className="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+            <li className="nav-item active">
+              <a className="nav-link" href="/">Home</a>
+            </li>
+            {/* <li><a className="nav-link" href="/shows">Shows</a></li> */}
+            <li><a className="nav-link" href="/about-us">About us</a></li>
+            <li><a className="nav-link" href="/contact-us">Contact us</a></li>
+            {/* <li><a className="nav-link" href="/advertisers">Advertisers</a></li> */}
+            <li><UserSignedIn></UserSignedIn></li>
+          </ul>
+        </div>
+      </div>
+        
+      </nav>
+      </>
     );
-}
+  }

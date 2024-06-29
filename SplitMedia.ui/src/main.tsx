@@ -13,6 +13,9 @@ import PrivacyPolicy from './routes/Terms/privacyPolicy';
 import CookiePolicy from './routes/Terms/cookiePolicy';
 import Register from './routes/User/register';
 import LearnMore from './routes/marketing/learnMore';
+import './index.css'
+import './App.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
 
 const router = createBrowserRouter([
   {
