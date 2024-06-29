@@ -16,6 +16,9 @@ import LearnMore from './routes/marketing/learnMore';
 import './index.css'
 import './App.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import MyAccount from './routes/User/myAccount';
+import ChangePassword from './routes/User/changePassword';
+import { Login } from '@mui/icons-material';
 
 const router = createBrowserRouter([
   {
@@ -36,9 +39,22 @@ const router = createBrowserRouter([
     element: <CookiePolicy />
   },
   {
+    path: "login",
+    element: <Login />
+  },
+  {
     path: "register",
     element: <Register />
   },
+  {
+    path: "my-account",
+    element: <MyAccount />
+  },
+  {
+    path: "change-password",
+    element: <ChangePassword />
+  },
+  
   {
     path: "privacy-policy",
     element: <PrivacyPolicy />
