@@ -1,0 +1,34 @@
+.rootTemplateImage {
+    max-width: 90%;
+    margin: 1em;
+    padding: 1em;
+
+}
+
+.rootTemplateSection {
+    padding-top: 1.5em;
+}
+
+.rootSecurityIcon {
+    max-width: 50%;
+    margin: 1em;
+    padding: 1em;
+}
+
+.techSectionHeader {
+    font-weight: bold;
+    font-size: 2em;
+    margin-bottom: 1.5em;
+}
+
+.rootPlanBox {
+    width: 100%;
+    border: 1px solid;
+    margin: 1em;
+    padding: 1em;
+}
+
+.planBoxTitle {
+    font-size: 1.25em;
+    font-weight: bold;
+}

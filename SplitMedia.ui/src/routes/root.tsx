@@ -1,47 +1,106 @@
 import PageHeader from '../components/pageHeader'
 import 'bootstrap/dist/css/bootstrap.css'
-import '../css/style.css'
+import './root.css'
 
 export default function Root() {
-  
+    
     return (
       <>
         <PageHeader/>
-        <section id="home" className="home">
-            <div className="overlay">
-                <div className="home_skew_border">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-sm-12 ">
-                                <div className="main_home_slider text-center">
-                                    <div className="single_home_slider">
-                                        <div className="main_home wow fadeInUp" data-wow-duration="700ms">
-                                            <h2>Your Media Your Way</h2>
-                                            <br></br>
-                                            <h3>WELCOME TO</h3>
-                                            <h1>SPLIT MEDIA</h1>
-                                            <div className="separator"></div>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the industry's
-                                                standard dummy text ever since the 1500s, when an unknown printer took a
-                                                galley
-                                                of type and scrambled it to make a type specimen book.</p>
-                                            <div className="home_btn">
-                                                <a href="/register" className="btn btn-lg m_t_10">GET
-                                                    STARTED NOW</a>
-                                                <a href="learn-more" className="btn btn-default">LEARN
-                                                    MORE</a>
-                                            </div>
+        <div className='containter-fluid'>
+            <h1>Header Text</h1>
+            <h3>Sub Header Text</h3>
+            <a href="/register" className="btn btn-primary">Sign Up</a>
+            <div className='rootTemplateSection'>
+                <div className="row">
+                    <div className="col-sm-4"><img src="https://pazootstorage.blob.core.windows.net/upload-images/pf1.jpg" className="rootTemplateImage"></img></div>
+                    <div className="col-sm-4"><img src="https://pazootstorage.blob.core.windows.net/upload-images/pf2.jpg" className="rootTemplateImage"></img></div>
+                    <div className="col-sm-4"><img src="https://pazootstorage.blob.core.windows.net/upload-images/pf3.jpg" className="rootTemplateImage"></img></div>
+                </div>
+            </div>
+            <h1><br/>tech Spec</h1>
+            <section id="SecuritySpec">
+                <div className="techSectionHeader text-start">Security</div>
+                <div className="row">
+                    <div className="col-sm-2"><img src="https://pazootstorage.blob.core.windows.net/upload-images/pf4.jpg" className="rootSecurityIcon"></img></div>
+                    <div className="col-sm-2"><img src="https://pazootstorage.blob.core.windows.net/upload-images/pf5.jpg" className="rootSecurityIcon"></img></div>
+                    <div className="col-sm-2"><img src="https://pazootstorage.blob.core.windows.net/upload-images/pf6.jpg" className="rootSecurityIcon"></img></div>
+                    <div className="col-sm-2"><img src="https://pazootstorage.blob.core.windows.net/upload-images/pf7.jpg" className="rootSecurityIcon"></img></div>
+                    <div className="col-sm-2"><img src="https://pazootstorage.blob.core.windows.net/upload-images/pf8.jpg" className="rootSecurityIcon"></img></div>
+                    <div className="col-sm-2"><img src="https://pazootstorage.blob.core.windows.net/upload-images/pf9.jpg" className="rootSecurityIcon"></img></div>
+                </div>
+            </section>
+            
+            <section id="StorageSpec">
+                <div className="techSectionHeader text-start">Storage</div>
+                <div className="row">
+                    <div className="col-sm-1">&nbsp;</div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div className="col-sm-2">
+                        <div className="rootPlanBox">
+                            <div className="planBoxTitle">Plan A</div>
+                            <ul>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="col-sm-2">
+                        <div className="rootPlanBox">
+                            <div className="planBoxTitle">Plan B</div>
+                            <ul>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="col-sm-2">
+                        <div className="rootPlanBox">
+                            <div className="planBoxTitle">Plan C</div>
+                            <ul>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="col-sm-2">
+                        <div className="rootPlanBox">
+                            <div className="planBoxTitle">Plan D</div>
+                            <ul>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="col-sm-2">
+                        <div className="rootPlanBox">
+                            <div className="planBoxTitle">Plan E</div>
+                            <ul>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                                <li>Blah</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <br></br>
+            <a href="/register" className="btn btn-primary">Sign Up</a>
+        </div>
+
       </>
     );
   }
