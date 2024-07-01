@@ -1,0 +1,14 @@
+.footer-section {
+    background-color: black;
+    padding: 1.5em;
+    color: silver;
+}
+
+.footer-section a { 
+    color:silver;
+}
+
+.footer-section a:hover { 
+    color:white;    
+}
+

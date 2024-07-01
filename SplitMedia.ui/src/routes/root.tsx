@@ -1,6 +1,7 @@
 import PageHeader from '../components/pageHeader'
 import 'bootstrap/dist/css/bootstrap.css'
 import './root.css'
+import PageFooter from '../components/pageFooter';
 
 export default function Root() {
     
@@ -100,7 +101,7 @@ export default function Root() {
             <br></br>
             <a href="/register" className="btn btn-primary">Sign Up</a>
         </div>
-
+        <PageFooter></PageFooter>
       </>
     );
   }
