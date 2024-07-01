@@ -19,6 +19,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import MyAccount from './routes/User/myAccount';
 import ChangePassword from './routes/User/changePassword';
 import { Login } from '@mui/icons-material';
+import Pricing from './routes/marketing/pricing';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
   {
     path: "learn-more",
     element: <LearnMore />
+  },
+  {
+    path: "pricing",
+    element: <Pricing />
   }  
 ]);
 
