@@ -1,25 +1,26 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Root from './routes/root';
-import ErrorPage from './error-page';
-import AboutUs from './routes/aboutUs';
-import { RecoilRoot } from 'recoil';
-import ContactUs from './routes/contactUs';
-import PrivacyPolicy from './routes/Terms/privacyPolicy';
-import CookiePolicy from './routes/Terms/cookiePolicy';
-import Register from './routes/User/register';
-import LearnMore from './routes/marketing/learnMore';
-import './index.css'
-import './App.css'
-import 'bootstrap/dist/js/bootstrap.min.js'
-import MyAccount from './routes/User/myAccount';
-import ChangePassword from './routes/User/changePassword';
-import { Login } from '@mui/icons-material';
-import Pricing from './routes/marketing/pricing';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./routes/root";
+import ErrorPage from "./error-page";
+import AboutUs from "./routes/aboutUs";
+import { RecoilRoot } from "recoil";
+import ContactUs from "./routes/contactUs";
+import PrivacyPolicy from "./routes/Terms/privacyPolicy";
+import CookiePolicy from "./routes/Terms/cookiePolicy";
+import Register from "./routes/User/register";
+import LearnMore from "./routes/marketing/learnMore";
+import "./index.css";
+import "./App.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import MyAccount from "./routes/User/myAccount";
+import ChangePassword from "./routes/User/changePassword";
+import { Login } from "@mui/icons-material";
+import Pricing from "./routes/marketing/pricing";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import DashBoard from "./routes/User/dashBoard";
+import AddGallery from "./routes/Gallery/addGallery";
+import ViewGallery from "./routes/Gallery/viewGallery";
 
 const router = createBrowserRouter([
   {
@@ -37,44 +38,62 @@ const router = createBrowserRouter([
   },
   {
     path: "cookie-policy",
-    element: <CookiePolicy />
+    element: <CookiePolicy />,
   },
   {
     path: "login",
-    element: <Login />
+    element: <Login />,
   },
   {
     path: "register",
-    element: <Register />
+    element: <Register />,
   },
   {
     path: "my-account",
-    element: <MyAccount />
+    element: <MyAccount />,
   },
   {
     path: "change-password",
-    element: <ChangePassword />
+    element: <ChangePassword />,
   },
-  
+
   {
     path: "privacy-policy",
-    element: <PrivacyPolicy />
+    element: <PrivacyPolicy />,
   },
   {
     path: "learn-more",
-    element: <LearnMore />
+    element: <LearnMore />,
   },
   {
     path: "pricing",
-    element: <Pricing />
-  }  
+    element: <Pricing />,
+  },
+  {
+    path: "dashboard",
+    element: <DashBoard />,
+  },
+  {
+    path: "add-gallery",
+    element: <AddGallery />,
+  },
+  {
+    path: "gallery",
+    element: <ViewGallery />,
+  },
 ]);
 
+let client = new ApolloClient({
+  uri: "https://localhost:7254/graphql/",
+  cache: new InMemoryCache(),
+});
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RecoilRoot>
-      <RouterProvider router={router} /> 
+      <ApolloProvider client={client}>
+        <RouterProvider router={router} />
+      </ApolloProvider>
     </RecoilRoot>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
