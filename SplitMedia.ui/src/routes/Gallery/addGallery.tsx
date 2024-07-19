@@ -69,7 +69,6 @@ export default function AddGallery() {
       const response = await axiosInstanceSecure.post("/addGallery", model);
 
       const myData: string = response.data;
-
       console.log("data var: " + myData);
 
       navigate("/gallery", { state: { id: 1, galleryId: myData } });
