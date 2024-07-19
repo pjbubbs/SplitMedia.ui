@@ -18,10 +18,13 @@ type CreateGalleryModel = {
   galleryDescription: string;
 };
 
+interface IapiResponse {
+  data: string;
+}
+
 export default function AddGallery() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [galleryId, setGalleryId] = useState("");
 
   const [error, setError] = useState<IErrorDetails | null>(null);
   const navigate = useNavigate();
@@ -63,31 +66,9 @@ export default function AddGallery() {
     }
 
     try {
-      const response = await axiosInstanceSecure
-        .post("/addGallery", model)
-        .catch(function (error) {
-          const jsonString = JSON.stringify(error.response.data);
-          apiErrorResponse = JSON.parse(jsonString);
+      const response = await axiosInstanceSecure.post("/addGallery", model);
 
-          if (apiErrorResponse) {
-            var errors: string[] = [];
-
-            for (const errorCode in apiErrorResponse.errors) {
-              const errorDetails = apiErrorResponse.errors[errorCode];
-              errorDetails.forEach((detail) => errors.push(String(detail)));
-            }
-
-            const err: IErrorDetails = {
-              title: apiErrorResponse.title,
-              messages: errors,
-            };
-
-            setError(err);
-            return;
-          }
-        });
-
-      const myData = response.data;
+      const myData: string = response.data;
 
       console.log("data var: " + myData);
 
