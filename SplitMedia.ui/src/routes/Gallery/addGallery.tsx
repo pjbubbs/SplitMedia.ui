@@ -18,18 +18,12 @@ type CreateGalleryModel = {
   galleryDescription: string;
 };
 
-interface IapiResponse {
-  data: string;
-}
-
 export default function AddGallery() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
   const [error, setError] = useState<IErrorDetails | null>(null);
   const navigate = useNavigate();
-
-  var apiErrorResponse: ApiRegErrorResponse | undefined = undefined;
 
   const model: CreateGalleryModel = {
     galleryName: name,
