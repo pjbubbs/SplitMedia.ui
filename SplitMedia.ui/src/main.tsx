@@ -15,12 +15,19 @@ import "./App.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import MyAccount from "./routes/User/myAccount";
 import ChangePassword from "./routes/User/changePassword";
-import { Login } from "@mui/icons-material";
 import Pricing from "./routes/marketing/pricing";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import DashBoard from "./routes/User/dashBoard";
+import {
+  ApolloClient,
+  ApolloProvider,
+  createHttpLink,
+  InMemoryCache,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import DashboardPage from "./routes/User/dashboard/dashboardPage";
 import AddGallery from "./routes/Gallery/addGallery";
 import ViewGallery from "./routes/Gallery/viewGallery";
+import Login from "./routes/User/login";
+import MyGalleries from "./routes/Gallery/myGalleries/myGalleries";
 
 const router = createBrowserRouter([
   {
@@ -71,20 +78,44 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashBoard />,
+    element: <DashboardPage />,
   },
   {
     path: "add-gallery",
     element: <AddGallery />,
   },
   {
-    path: "gallery",
+    path: "gallery/:id",
     element: <ViewGallery />,
+  },
+  {
+    path: "mygalleries",
+    element: <MyGalleries />,
   },
 ]);
 
-let client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: "https://localhost:7254/graphql/",
+});
+
+const accessToken = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith("accessToken="))
+  ?.split("=")[1];
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: accessToken ? `Bearer ${accessToken}` : "",
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
