@@ -9,7 +9,7 @@ export default function PageHeader() {
       >
         <div className="container">
           <a className="navbar-brand" href="/">
-            Split
+            Credo B
           </a>
 
           <button

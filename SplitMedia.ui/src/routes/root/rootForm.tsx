@@ -2,7 +2,7 @@ import PageHeader from "../../components/pageHeader";
 import "bootstrap/dist/css/bootstrap.css";
 import "./root.css";
 import PageFooter from "../../components/pageFooter";
-import MemberPlanForm from "./memberPlan/memberPlanForm";
+import MemberPlanForm from "../../components/memberPlan/memberPlanForm";
 
 const RootForm = (props: { rootData: IRootData }) => (
   <>

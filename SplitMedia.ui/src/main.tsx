@@ -8,7 +8,7 @@ import { RecoilRoot } from "recoil";
 import ContactUs from "./routes/contactUs";
 import PrivacyPolicy from "./routes/Terms/privacyPolicy";
 import CookiePolicy from "./routes/Terms/cookiePolicy";
-import Register from "./routes/User/register";
+import Register from "./routes/User/registration/register/register";
 import LearnMore from "./routes/marketing/learnMore";
 import "./index.css";
 import "./App.css";

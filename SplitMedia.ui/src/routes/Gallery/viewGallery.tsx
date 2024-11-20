@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import PageHeader from "../../components/pageHeader";
-import { Button } from "@mui/material";
 import { gql, useQuery } from "@apollo/client";
 import ImageUpload from "../../components/Uploaders/imageUploader";
 

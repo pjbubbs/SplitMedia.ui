@@ -1,11 +1,10 @@
 export default function isLoggedIn(): boolean {
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
-    const accessToken = localStorage.getItem("accessToken");
-    const refreshToken = localStorage.getItem("refreshToken");
+  if (!accessToken && !refreshToken) {
+    return false;
+  }
 
-    if (!accessToken && !refreshToken) {
-        return false;
-    };
-
-    return true;
+  return true;
 }

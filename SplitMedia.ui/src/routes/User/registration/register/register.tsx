@@ -1,4 +1,4 @@
-import PageHeader from "../../components/pageHeader";
+import PageHeader from "../../../../components/pageHeader";
 import {
   Avatar,
   Box,
@@ -16,9 +16,9 @@ import {
 import { LockOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axiosInstance from "../../api/axiosInstance";
-import axiosInstanceSecure from "../../api/axiosInstanceSecure";
-import ErrorList, { IErrorDetails } from "../../components/errorList";
+import axiosInstance from "../../../../api/axiosInstance";
+import axiosInstanceSecure from "../../../../api/axiosInstanceSecure";
+import ErrorList, { IErrorDetails } from "../../../../components/errorList";
 import { useNavigate } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import { useCookies } from "react-cookie";
@@ -192,7 +192,7 @@ export default function Register() {
 
       navigate("/dashboard");
     } catch (e) {
-      console.error("Error: " && e);
+      console.error("Error: " + e);
     }
   };
 
