@@ -11,23 +11,18 @@ import CookiePolicy from "./routes/Terms/cookiePolicy";
 import Register from "./routes/User/registration/register/register";
 import LearnMore from "./routes/marketing/learnMore";
 import "./index.css";
-import "./App.css";
+import "./main.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import MyAccount from "./routes/User/myAccount";
 import ChangePassword from "./routes/User/changePassword";
 import Pricing from "./routes/marketing/pricing";
-import {
-  ApolloClient,
-  ApolloProvider,
-  createHttpLink,
-  InMemoryCache,
-} from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import DashboardPage from "./routes/User/dashboard/dashboardPage";
 import AddGallery from "./routes/Gallery/addGallery";
 import ViewGallery from "./routes/Gallery/viewGallery";
 import Login from "./routes/User/login";
 import MyGalleries from "./routes/Gallery/myGalleries/myGalleries";
+import SelectPlan from "./routes/User/registration/selectPlan/selectPlan";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "register",
     element: <Register />,
+  },
+  {
+    path: "select-plan",
+    element: <SelectPlan />,
   },
   {
     path: "my-account",
@@ -94,10 +93,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-const httpLink = createHttpLink({
-  uri: "https://localhost:7254/graphql/",
-});
-
 const accessToken = document.cookie
   .split("; ")
   .find((row) => row.startsWith("accessToken="))
@@ -114,17 +109,10 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RecoilRoot>
-      <ApolloProvider client={client}>
-        <RouterProvider router={router} />
-      </ApolloProvider>
+      <RouterProvider router={router} />
     </RecoilRoot>
   </React.StrictMode>
 );

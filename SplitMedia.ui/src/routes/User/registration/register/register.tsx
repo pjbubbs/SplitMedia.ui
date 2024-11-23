@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axiosInstance from "../../../../api/axiosInstance";
 import { IErrorDetails } from "../../../../components/errorList";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import RegisterForm from "./registerForm";
 
@@ -33,8 +33,8 @@ export default function Register() {
   const [error, setError] = useState<IErrorDetails | null>(null);
   const [, setCookie] = useCookies(["refreshToken"]);
   const [, setAccessCookie] = useCookies(["accessToken"]);
-
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   var apiErrorResponse: ApiRegErrorResponse | undefined = undefined;
 
@@ -130,10 +130,10 @@ export default function Register() {
       setCookie("refreshToken", authData.refreshToken);
       setAccessCookie("accessToken", authData.accessToken);
 
-      navigate("/select-plan");
-    } catch (e) {
-      console.error("Error: " + e);
-    }
+      const selectedPlanId = searchParams.get("mp");
+
+      navigate("/select-plan?mp=" + selectedPlanId);
+    } catch (e) {}
   };
 
   return (
