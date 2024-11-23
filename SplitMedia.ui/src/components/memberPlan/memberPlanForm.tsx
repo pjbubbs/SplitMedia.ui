@@ -10,6 +10,12 @@ const MemberPlanForm = (props: { memberPlanData: IMemberPlanData }) => (
         <li>Monthly Fee: £{props.memberPlanData.monthlyFee}</li>
         <li>Annual Fee: £{props.memberPlanData.annualFee}</li>
       </ul>
+      <a
+        href={"/register?mp=" + props.memberPlanData.memberPlanId}
+        className="btn btn-primary"
+      >
+        Select
+      </a>
     </div>
   </div>
 );
