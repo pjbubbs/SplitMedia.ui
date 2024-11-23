@@ -1,27 +1,9 @@
-import PageHeader from "../../../../components/pageHeader";
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  CssBaseline,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { LockOutlined } from "@mui/icons-material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import axiosInstance from "../../../../api/axiosInstance";
-import axiosInstanceSecure from "../../../../api/axiosInstanceSecure";
-import ErrorList, { IErrorDetails } from "../../../../components/errorList";
+import { IErrorDetails } from "../../../../components/errorList";
 import { useNavigate } from "react-router-dom";
-import { gql, useQuery } from "@apollo/client";
 import { useCookies } from "react-cookie";
+import RegisterForm from "./registerForm";
 
 type UserRegistrationModel = {
   email: string;
@@ -35,61 +17,46 @@ type AuthToken = {
   refreshToken: string;
 };
 
-type memberPlanType = {
-  memberPlanId: string;
-  name: string;
-  monthlyFee: number;
-  annualFee: number;
+export type IRegistrationData = {
+  email: string;
+  password: string;
+  passwordConfirmation: string;
 };
 
-const memberPlansQuery = gql`
-  query getMemberPlans {
-    memberPlans {
-      memberPlanId
-      name
-      monthlyFee
-      annualFee
-    }
-  }
-`;
+export const RegistrationData: IRegistrationData = {
+  email: "",
+  password: "",
+  passwordConfirmation: "",
+};
 
 export default function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [plan, setPlan] = useState<null | string>("");
   const [error, setError] = useState<IErrorDetails | null>(null);
   const [, setCookie] = useCookies(["refreshToken"]);
   const [, setAccessCookie] = useCookies(["accessToken"]);
 
   const navigate = useNavigate();
 
-  const regModel: UserRegistrationModel = {
-    password: password,
-    email: email,
-  };
-
   var apiErrorResponse: ApiRegErrorResponse | undefined = undefined;
 
   const requiredFieldsSupplied = () => {
-    if (email && password && passwordConfirmation && plan) {
+    if (
+      RegistrationData.email &&
+      RegistrationData.password &&
+      RegistrationData.passwordConfirmation
+    ) {
       return true;
     }
 
     var errors: string[] = [];
 
-    if (!email) {
+    if (!RegistrationData.email) {
       errors.push("Email must be entered.");
     }
-    if (!password) {
+    if (!RegistrationData.password) {
       errors.push("Password must be entered.");
     }
-    if (!passwordConfirmation) {
+    if (!RegistrationData.passwordConfirmation) {
       errors.push("Password Confirmation must be entered.");
-    }
-
-    if (!plan) {
-      errors.push("Please select a plan.");
     }
 
     const err: IErrorDetails = {
@@ -103,7 +70,7 @@ export default function Register() {
   };
 
   const passwordAndConfirmationMatch = () => {
-    if (password === passwordConfirmation) {
+    if (RegistrationData.password === RegistrationData.passwordConfirmation) {
       return true;
     }
 
@@ -121,36 +88,6 @@ export default function Register() {
     return false;
   };
 
-  const GetMemberPlans = () => {
-    const { loading, error, data } = useQuery(memberPlansQuery, {
-      notifyOnNetworkStatusChange: true,
-    });
-    if (loading) return "Loading...";
-    if (error) return `Error! ${error.message}`;
-
-    return (
-      <Select
-        defaultValue="yyy"
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={plan}
-        label="Plan"
-        onChange={(e) => setPlan(e.target.value)}
-      >
-        {data.memberPlans.map((memberPlan: memberPlanType) => {
-          return (
-            <MenuItem
-              key={memberPlan.memberPlanId}
-              value={memberPlan.memberPlanId}
-            >
-              {memberPlan.name}
-            </MenuItem>
-          );
-        })}
-      </Select>
-    );
-  };
-
   const handleRegister = async () => {
     if (!requiredFieldsSupplied()) {
       return;
@@ -158,6 +95,11 @@ export default function Register() {
     if (!passwordAndConfirmationMatch()) {
       return;
     }
+
+    const regModel: UserRegistrationModel = {
+      password: RegistrationData.password,
+      email: RegistrationData.email,
+    };
 
     try {
       await axiosInstance.post("/register", regModel).catch(function (error) {
@@ -188,93 +130,13 @@ export default function Register() {
       setCookie("refreshToken", authData.refreshToken);
       setAccessCookie("accessToken", authData.accessToken);
 
-      await axiosInstanceSecure.post("/SetMembersPlan?MemberPlanId=" + plan);
-
-      navigate("/dashboard");
+      navigate("/select-plan");
     } catch (e) {
       console.error("Error: " + e);
     }
   };
 
   return (
-    <>
-      <PageHeader />
-      <Container maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            mt: 20,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
-            <LockOutlined />
-          </Avatar>
-          <Typography variant="h5">Register</Typography>
-          <Box sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="passwordConfirmation"
-                  label="Password Confirmation"
-                  type="password"
-                  id="passwordConfirmation"
-                  value={passwordConfirmation}
-                  onChange={(e) => setPasswordConfirmation(e.target.value)}
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Plan</InputLabel>
-                  <GetMemberPlans></GetMemberPlans>
-                </FormControl>
-              </Grid>
-            </Grid>
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={handleRegister}
-            >
-              Register
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link to="/login">Already have an account? Login</Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-        <ErrorList errorDetail={error}></ErrorList>
-      </Container>
-    </>
+    <>{<RegisterForm callbackFunction={handleRegister} errorProp={error} />}</>
   );
 }
