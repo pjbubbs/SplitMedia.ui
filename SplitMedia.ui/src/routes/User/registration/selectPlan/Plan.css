@@ -1,0 +1,11 @@
+.rootPlanBox {
+    width: 100%;
+    border: 1px solid;
+    margin: 1em;
+    padding: 1em;
+}
+
+.planBoxTitle {
+    font-size: 1.25em;
+    font-weight: bold;
+}

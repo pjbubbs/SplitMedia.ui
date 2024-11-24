@@ -1,25 +1,37 @@
-import { useRecoilState } from "recoil";
-import { selectedGalleryIdState } from "../../../atoms";
-import { DocumentNode, gql, useQuery } from "@apollo/client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MyGalleriesForm from "./myGalleriesForm";
+import axiosInstanceSecure from "../../../api/axiosInstanceSecure";
+import { useNavigate } from "react-router-dom";
 
 export default function MyGalleries() {
-  const GalleryQuery2: DocumentNode = gql`
-    query {
-      myGalleries {
-        galleryName
-        galleryId
-      }
-    }
-  `;
+  const [myGalleriesFormData, setMyGalleriesFormData] = useState<
+    IGallery[] | null
+  >(null);
+  const navigate = useNavigate();
 
-  const { data } = useQuery(GalleryQuery2);
-  const [galleryId, setGalleryId] = useRecoilState(selectedGalleryIdState);
+  async function fetchData() {
+    await axiosInstanceSecure
+      .get("/GetMyGalleries")
+      .then((response) => {
+        setMyGalleriesFormData(response.data);
+      })
+      .catch((error) => {
+        console.log("error message " + error);
+        if (error === "authError") {
+          navigate("/Login");
+        }
+      });
+  }
 
   useEffect(() => {
-    setGalleryId(galleryId);
+    fetchData();
   }, []);
 
-  return <>{data ? <MyGalleriesForm galleriesData={data} /> : null}</>;
+  return (
+    <>
+      {myGalleriesFormData ? (
+        <MyGalleriesForm galleriesData={myGalleriesFormData} />
+      ) : null}
+    </>
+  );
 }

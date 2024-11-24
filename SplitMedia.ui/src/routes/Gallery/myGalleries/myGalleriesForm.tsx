@@ -1,8 +1,8 @@
-const MyGalleriesForm = (props: { galleriesData: any }) => (
+const MyGalleriesForm = (props: { galleriesData: IGallery[] }) => (
   <>
     <h2>My Galleries</h2>
 
-    {props.galleriesData.myGalleries.map((gallery: IGallery) => {
+    {props.galleriesData.map((gallery: IGallery) => {
       return (
         <div key={gallery.galleryId}>
           <a className="" href={"/gallery/" + gallery.galleryId}>

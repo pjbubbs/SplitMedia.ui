@@ -67,7 +67,9 @@ export default function AddGallery() {
 
       navigate("/gallery", { state: { id: 1, galleryId: myData } });
     } catch (e) {
-      console.error("Error: " && e);
+      console.error("Error: " + e);
+      if (e === "") {
+      }
     }
   };
 

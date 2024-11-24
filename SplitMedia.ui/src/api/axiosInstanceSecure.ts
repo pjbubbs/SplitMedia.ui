@@ -29,7 +29,6 @@ axiosInstanceSecure.interceptors.request.use(
     return config;
   };
 
-  console.log('Calling');
   config.headers.Authorization = 'Bearer ' + accessToken;
   config.headers.Accept = 'application/json';
 
@@ -41,12 +40,15 @@ axiosInstanceSecure.interceptors.request.use(
 
 // Response interceptor for API calls
 axiosInstanceSecure.interceptors.response.use((response) => {
+  console.log('response here' + response.data);
   return response
 }, async function (error) {
   const originalRequest = error.config;
   console.log('Error status: ' + error.response.status);
+  if (error.response.status === 401) {
+    return Promise.reject('authError');
+  }
   if (error.response.status === 403 && !originalRequest._retry) {
-    console.log('Retrying');
     originalRequest._retry = true;
 
     const accessToken = await refreshAccessToken();            

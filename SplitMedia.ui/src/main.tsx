@@ -16,13 +16,15 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import MyAccount from "./routes/User/myAccount";
 import ChangePassword from "./routes/User/changePassword";
 import Pricing from "./routes/marketing/pricing";
-import { setContext } from "@apollo/client/link/context";
-import DashboardPage from "./routes/User/dashboard/dashboardPage";
+import DashboardPage from "./routes/User/dashboard/dashboardForm";
 import AddGallery from "./routes/Gallery/addGallery";
-import ViewGallery from "./routes/Gallery/viewGallery";
+import ViewGallery from "./routes/Gallery/viewGallery/viewGallery";
 import Login from "./routes/User/login";
 import MyGalleries from "./routes/Gallery/myGalleries/myGalleries";
 import SelectPlan from "./routes/User/registration/selectPlan/selectPlan";
+import Payment from "./routes/User/registration/payment/Payment";
+import TakePayment from "./routes/User/registration/takePayment/TakePayment";
+import ThankYou from "./routes/User/registration/thankYou/ThankYou";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,18 @@ const router = createBrowserRouter([
   {
     path: "select-plan",
     element: <SelectPlan />,
+  },
+  {
+    path: "payment",
+    element: <Payment />,
+  },
+  {
+    path: "take-payment",
+    element: <TakePayment />,
+  },
+  {
+    path: "thank-you",
+    element: <ThankYou />,
   },
   {
     path: "my-account",
@@ -93,21 +107,18 @@ const router = createBrowserRouter([
   },
 ]);
 
-const accessToken = document.cookie
-  .split("; ")
-  .find((row) => row.startsWith("accessToken="))
-  ?.split("=")[1];
+//const accessToken = document.cookie  .split("; ")  .find((row) => row.startsWith("accessToken="))  ?.split("=")[1];
 
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: accessToken ? `Bearer ${accessToken}` : "",
-    },
-  };
-});
+//const authLink = setContext((_, { headers }) => {
+// get the authentication token from local storage if it exists
+// return the headers to the context so httpLink can read them
+//  return {
+//    headers: {
+//      ...headers,
+//      authorization: accessToken ? `Bearer ${accessToken}` : "",
+//    },
+//  };
+//});
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

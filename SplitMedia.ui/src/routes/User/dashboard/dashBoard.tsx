@@ -1,25 +1,8 @@
-import { useQuery, gql } from "@apollo/client";
 import PageHeader from "../../../components/pageHeader";
-import MyGalleries from "../../Gallery/myGalleries/myGalleries";
-import { useEffect } from "react";
 import PageFooter from "../../../components/pageFooter";
-
-const GET_DATA = gql`
-  query {
-    myGalleries {
-      galleryName
-      galleryId
-    }
-  }
-`;
+import MyGalleries from "../../Gallery/myGalleries/myGalleries";
 
 export default function DashBoard() {
-  const { loading, error, data } = useQuery(GET_DATA);
-
-  useEffect(() => {
-    console.log(loading, error, data);
-  });
-
   return (
     <>
       <PageHeader />

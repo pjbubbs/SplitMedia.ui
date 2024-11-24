@@ -2,7 +2,7 @@ import PageHeader from "../../../components/pageHeader";
 import MyGalleries from "../../Gallery/myGalleries/myGalleries";
 import PageFooter from "../../../components/pageFooter";
 
-export default function DashboardPage() {
+export default function DashboardForm() {
   return (
     <>
       <PageHeader />
