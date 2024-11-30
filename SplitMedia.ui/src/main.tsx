@@ -70,7 +70,11 @@ const router = createBrowserRouter([
   },
   {
     path: "my-account",
-    element: <MyAccount />,
+    element: (
+      <PrivateRoute>
+        <MyAccount />
+      </PrivateRoute>
+    ),
   },
   {
     path: "change-password",
@@ -122,8 +126,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
+    <AuthProvider>
+      <RecoilRoot>
+        <RouterProvider router={router} />
+      </RecoilRoot>
+    </AuthProvider>
   </React.StrictMode>
 );
