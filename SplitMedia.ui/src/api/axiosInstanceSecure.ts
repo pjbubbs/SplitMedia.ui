@@ -1,5 +1,6 @@
 import axios from "axios";
 import refreshAccessToken from "./refreshAccessToken";
+import { useAuth } from "../Context/useAuth";
 
 // Create an Axios instance with default options
 const axiosInstanceSecure = axios.create({
@@ -11,10 +12,7 @@ axiosInstanceSecure.interceptors.request.use(
   async config => {
   const controller = new AbortController();
 
-  const accessToken = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("accessToken="))
-    ?.split("=")[1];
+  const { token } = useAuth();
 
   const refreshToken = document.cookie
     .split("; ")
@@ -22,14 +20,14 @@ axiosInstanceSecure.interceptors.request.use(
     ?.split("=")[1];
 
 
-  if (!accessToken && !refreshToken) {
+  if (!token && !refreshToken) {
     console.log('Aborting');
     controller.abort();
     controller.signal;
     return config;
   };
 
-  config.headers.Authorization = 'Bearer ' + accessToken;
+  config.headers.Authorization = 'Bearer ' + token;
   config.headers.Accept = 'application/json';
 
   return config;

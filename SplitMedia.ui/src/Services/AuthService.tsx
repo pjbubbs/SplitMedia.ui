@@ -1,34 +1,30 @@
-import axios from "axios";
+import { ILoginTokenData } from "../Context/useAuth";
 import { handleError } from "../Helpers/ErrorHandler";
-import { UserProfileToken } from "../Models/User";
+import axiosInstance from "../api/axiosInstance";
 
-const api = "http://localhost:5167/api/";
-
-export const loginAPI = async (username: string, password: string) => {
+export const loginAPI = async (email: string, password: string) => {
   try {
-    const data = await axios.post<UserProfileToken>(api + "account/login", {
-      username: username,
+    const data = await axiosInstance.post<ILoginTokenData>("/login", {
+      email: email,
       password: password,
     });
-    return data;
+    return data.data;
   } catch (error) {
     handleError(error);
   }
 };
 
-export const registerAPI = async (
-  email: string,
-  username: string,
-  password: string
-) => {
+export const registerAPI = async (email: string, password: string) => {
   try {
-    const data = await axios.post<UserProfileToken>(api + "account/register", {
+    await axiosInstance.post("/register", {
       email: email,
-      username: username,
       password: password,
     });
-    return data;
+    return true;
   } catch (error) {
+    console.log("error:");
+    console.log(error);
     handleError(error);
   }
+  return false;
 };

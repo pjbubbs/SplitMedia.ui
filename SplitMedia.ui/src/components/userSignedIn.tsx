@@ -1,23 +1,25 @@
 import Parser from "html-react-parser";
 import { useState, useEffect } from "react";
-import isLoggedIn from "../commonData/user/isLoggedIn";
+import { useAuth } from "../Context/useAuth";
 
 export default function UserSignedIn() {
+  const { isLoggedIn } = useAuth();
   const [myAccountText, setMyAccountText] = useState(
     '<a className="nav-link" href="/Login">Sign In</a>'
   );
 
-  useEffect(() => {
-    async function getBasicInfo() {
-      const loggedIn = await isLoggedIn();
+  function getBasicInfo() {
+    const loggedIn = isLoggedIn();
 
-      if (loggedIn) {
-        setMyAccountText(
-          '<a className="nav-link" href="/my-account">My Account</a>'
-        );
-        return;
-      }
+    if (loggedIn) {
+      setMyAccountText(
+        '<a className="nav-link" href="/my-account">My Account</a>'
+      );
+      return;
     }
+  }
+
+  useEffect(() => {
     getBasicInfo();
   }, []);
 

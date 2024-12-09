@@ -20,7 +20,7 @@ export default function SelectPlan() {
   useEffect(() => {
     const selectedPlanId = searchParams.get("mp");
 
-    if (selectedPlanId) {
+    if (selectedPlanId && selectedPlanId !== "null") {
       navigate("/payment?mp=" + selectedPlanId);
     }
 

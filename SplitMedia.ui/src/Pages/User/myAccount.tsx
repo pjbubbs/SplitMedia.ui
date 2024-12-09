@@ -1,4 +1,4 @@
-import PageHeader from '../../components/pageHeader'
+import PageHeader from "../../components/pageHeader";
 import { LockOutlined } from "@mui/icons-material";
 import {
   Container,
@@ -6,43 +6,37 @@ import {
   Box,
   Avatar,
   Typography,
-  Button
+  Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react';
-import basicUserInfo from '../../commonData/user/basicUserInfo';
+import { useEffect, useState } from "react";
+import basicUserInfo from "../../commonData/user/basicUserInfo";
+import { useAuth } from "../../Context/useAuth";
 
-export default function MyAccount(){
+export default function MyAccount() {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState("")
+  const [userName, setUserName] = useState("");
+  const { logout } = useAuth();
 
   useEffect(() => {
     async function getBasicInfo() {
       const userInfo = await basicUserInfo();
-      setUserName(userInfo?.name + '');
+      setUserName(userInfo?.name + "");
     }
     getBasicInfo();
-  }, [])
-
+  }, []);
 
   const handleLogout = async () => {
-    try {
-      document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      localStorage.removeItem("basicUuserInfo");
-      navigate("/");
-    } catch (e) {
-      console.log("handleLogout ERROR:" + e)
-    }
+    logout();
   };
 
   const handleChangePassword = async () => {
-      navigate("/change-password");
+    navigate("/change-password");
   };
 
   return (
     <>
-    <PageHeader />
+      <PageHeader />
       <Container maxWidth="xs">
         <CssBaseline />
         <Box
@@ -52,7 +46,7 @@ export default function MyAccount(){
             flexDirection: "column",
             alignItems: "center",
           }}
-        >         
+        >
           <Typography variant="h3">{userName}</Typography>
           <br></br>
           <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
@@ -60,7 +54,11 @@ export default function MyAccount(){
           </Avatar>
           <Typography variant="h5">Sign Out</Typography>
           <Box sx={{ mt: 1 }}>
-            <Button variant="contained" sx={{ mt: 3, mb: 2 }} onClick={handleLogout}>
+            <Button
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={handleLogout}
+            >
               Logout
             </Button>
           </Box>
@@ -78,7 +76,11 @@ export default function MyAccount(){
           </Avatar>
           <Typography variant="h5">Password</Typography>
           <Box sx={{ mt: 1 }}>
-            <Button variant="contained" sx={{ mt: 3, mb: 2 }} onClick={handleChangePassword}>
+            <Button
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={handleChangePassword}
+            >
               Change Passord
             </Button>
           </Box>
@@ -86,6 +88,4 @@ export default function MyAccount(){
       </Container>
     </>
   );
-};
-
-
+}

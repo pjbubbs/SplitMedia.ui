@@ -13,31 +13,15 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ErrorList, { IErrorDetails } from "../../components/errorList";
-import axiosInstance from "../../api/axiosInstance";
-import { useCookies } from "react-cookie";
-import { AxiosError } from "axios";
+import { useAuth } from "../../Context/useAuth";
 
 export default function Login() {
-  const [, setCookie] = useCookies(["refreshToken"]);
-  const [, setAccessCookie] = useCookies(["accessToken"]);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<IErrorDetails | null>(null);
 
   const navigate = useNavigate();
-
-  type User = {
-    email: string;
-    password: string;
-  };
-
-  type AuthToken = {
-    tokenType: string;
-    accessToken: string;
-    expiresIn: number;
-    refreshToken: string;
-  };
+  const { loginUser } = useAuth();
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -60,40 +44,9 @@ export default function Login() {
       return;
     }
 
-    try {
-      const data: User = {
-        email: email,
-        password: password,
-      };
+    loginUser(email, password);
 
-      const response = await axiosInstance.post("/login", data);
-      const authData: AuthToken = response.data;
-
-      setCookie("refreshToken", authData.refreshToken);
-      setAccessCookie("accessToken", authData.accessToken);
-
-      navigate("/dashboard");
-    } catch (e) {
-      var errors: string[] = [];
-
-      let message;
-      if (e instanceof AxiosError) {
-        if (e.response?.status == 401) {
-          message = "Invalid Credentials";
-        } else {
-          message = e.message;
-        }
-      } else message = String(error);
-
-      errors.push(message);
-
-      const err: IErrorDetails = {
-        title: "The following error occurred",
-        messages: errors,
-      };
-
-      setError(err);
-    }
+    navigate("/dashboard");
   };
 
   return (
