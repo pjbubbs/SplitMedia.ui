@@ -1,6 +1,6 @@
 import PageFooter from "../../../components/pageFooter";
 import PageHeader from "../../../components/pageHeader";
-import ImageUpload from "../../../components/Uploaders/imageUploader";
+import ImageUpload from "../../../components/Uploaders/imageUploader/imageUploader";
 
 export default function ViewGalleryForm(props: {
   galleryAndContent: IGalleryAndContent;

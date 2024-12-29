@@ -8,7 +8,7 @@ const SelectPlanForm = (props: { planData: IPlanData[] }) => (
     <p>Please select the plan that you'd like to use:</p>
 
     <section id="StorageSpec">
-      <div className="techSectionHeader text-start">Storage</div>
+      <div className="techSectionHeader text-start">Membership Plans</div>
       <div className="row">
         <div className="col-sm-1">&nbsp;</div>
         {props.planData

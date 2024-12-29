@@ -31,7 +31,6 @@ export default function ViewGallery() {
 
   return (
     <>
-      Here:
       {myGalleryFormData ? (
         <ViewGalleryForm galleryAndContent={myGalleryFormData} />
       ) : null}
