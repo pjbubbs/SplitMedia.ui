@@ -45,18 +45,11 @@ axiosInstanceSecure.interceptors.response.use((response) => {
   try { 
   //const originalRequest = error.config;
   console.log('Error status: ' + error.response.status);
-  if (error.response.status === 401) {
-    return Promise.reject('authError');
+  if (error.response.status === 401 || error.response.status === 403) {
+    // todo: put some code in to check the refresh token
+    window.location.href = '/logout';
   }
-/*
-  if (error.response.status === 403 && !originalRequest._retry) {
-    originalRequest._retry = true;
 
-    const accessToken = await refreshAccessToken();            
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
-    return axiosInstanceSecure(originalRequest);
-  }
-*/
 }
   catch(e){
     console.log('Interceptor error');
