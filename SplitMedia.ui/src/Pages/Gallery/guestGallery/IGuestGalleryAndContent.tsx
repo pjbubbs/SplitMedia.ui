@@ -1,6 +1,5 @@
-type IGalleryAndContent = {
+type IGuestGalleryAndContent = {
   galleryId: string;
   galleryName: string;
-  shareLink: string;
   images: IViewGalleryImage[] | null;
 } | null;

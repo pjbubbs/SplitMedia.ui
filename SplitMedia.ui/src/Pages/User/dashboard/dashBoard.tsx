@@ -1,19 +1,39 @@
-import PageHeader from "../../../components/pageHeader";
-import PageFooter from "../../../components/pageFooter";
-import MyGalleries from "../../Gallery/myGalleries/myGalleries";
+import { useEffect, useState } from "react";
+import axiosInstanceSecure from "../../../api/axiosInstanceSecure";
+import DashboardForm from "./dashboardForm";
 
 export default function DashBoard() {
+  const [myDashBoardFormData, setMyDashBoardFormData] =
+    useState<IDashBoard | null>(null);
+
+  async function fetchData() {
+    await axiosInstanceSecure
+      .get("/GetMyDashBoard")
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        setMyDashBoardFormData(response.data);
+      })
+      .catch((error) => {
+        console.log("GetMyDashBoard - error message: " + error);
+        if (error === "authError") {
+          /*navigate("/Login");*/
+          console.log("Navigate away");
+        }
+      });
+  }
+
+  useEffect(() => {
+    console.log("use effect running");
+    fetchData();
+  }, []);
+
   return (
     <>
-      <PageHeader />
-      <h1>User Dashboard</h1>
-      <hr></hr>
-      <MyGalleries />
-      <hr></hr>
-      <a className="btn btn-primary" href="/add-gallery">
-        Add Gallery
-      </a>
-      <PageFooter></PageFooter>
+      {myDashBoardFormData ? (
+        <DashboardForm dashBoardData={myDashBoardFormData} />
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
   );
 }

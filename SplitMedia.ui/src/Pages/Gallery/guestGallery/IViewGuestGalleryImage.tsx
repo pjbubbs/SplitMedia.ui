@@ -1,4 +1,4 @@
-type IViewGalleryImage = {
+type IViewGuestGalleryImage = {
   imageId: string;
   galleryId: string;
   userId: string;

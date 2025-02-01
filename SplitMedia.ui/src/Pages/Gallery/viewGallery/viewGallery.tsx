@@ -7,6 +7,10 @@ export default function ViewGallery() {
   const { id } = useParams();
   const [myGalleryFormData, setMyGalleryFormData] =
     useState<IGalleryAndContent | null>(null);
+  const [styleSheet, setStyleSheet] = useState<string>(
+    "https://pazootstorage.blob.core.windows.net/pazoot-resources/tmp1.css"
+  );
+
   const navigate = useNavigate();
 
   async function fetchData() {
@@ -25,14 +29,22 @@ export default function ViewGallery() {
       });
   }
 
+  const handleSetSytleSheet = (sheetPath: string) => {
+    setStyleSheet(sheetPath);
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
 
   return (
     <>
+      <link rel="stylesheet" type="text/css" href={styleSheet} />
       {myGalleryFormData ? (
-        <ViewGalleryForm galleryAndContent={myGalleryFormData} />
+        <ViewGalleryForm
+          galleryAndContent={myGalleryFormData}
+          handleClick={handleSetSytleSheet}
+        />
       ) : null}
     </>
   );

@@ -10,7 +10,6 @@ import LearnMore from "../Pages/marketing/learnMore";
 import MyAccount from "../Pages/User/myAccount";
 import ChangePassword from "../Pages/User/changePassword";
 import Pricing from "../Pages/marketing/pricing";
-import DashboardPage from "../Pages/User/dashboard/dashboardForm";
 import AddGallery from "../Pages/Gallery/addGallery";
 import ViewGallery from "../Pages/Gallery/viewGallery/viewGallery";
 import Login from "../Pages/User/login";
@@ -19,6 +18,8 @@ import Payment from "../Pages/User/registration/payment/Payment";
 import TakePayment from "../Pages/User/registration/takePayment/TakePayment";
 import ThankYou from "../Pages/User/registration/thankYou/ThankYou";
 import ProtectedRoute from "./ProtectedRoute";
+import DashBoard from "../Pages/User/dashboard/dashBoard";
+import ViewGuestGallery from "../Pages/Gallery/guestGallery/viewGuestGallery";
 
 export const router = createBrowserRouter([
   {
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: (
       <ProtectedRoute>
-        <DashboardPage />
+        <DashBoard />
       </ProtectedRoute>
     ),
   },
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
         <ViewGallery />
       </ProtectedRoute>
     ),
+  },
+  {
+    path: "guestgallery/:gid/:sid",
+    element: <ViewGuestGallery />,
   },
   {
     path: "payment",
