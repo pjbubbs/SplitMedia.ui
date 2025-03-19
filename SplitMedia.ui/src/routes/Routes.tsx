@@ -26,11 +26,15 @@ import SignUpThankYou from "../Pages/marketing/signUpThankYou/SignUpThankYou";
 
 export const router = createBrowserRouter([
   {
+    path: "/",
+    element: <SignUp />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "testhomepage",
     element: <Root />,
     errorElement: <ErrorPage />,
   },
-  { path: "/", element: <SignUp /> },
   { path: "signup", element: <SignUp /> },
   { path: "signup-thank-you", element: <SignUpThankYou /> },
   { path: "about-us", element: <AboutUs /> },
