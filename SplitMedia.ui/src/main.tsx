@@ -8,14 +8,14 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import { UserProvider } from "./Context/useAuth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { router } from "./Routes/Routes";
+import { routerConfig } from "./RoutesSetup/RoutesConfig";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <UserProvider>
       <RecoilRoot>
         <ToastContainer />
-        <RouterProvider router={router} />
+        <RouterProvider router={routerConfig} />
         <Outlet />
       </RecoilRoot>
     </UserProvider>
