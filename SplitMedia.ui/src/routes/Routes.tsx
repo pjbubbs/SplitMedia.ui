@@ -1,6 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import SignUp from "../Pages/marketing/signUp/SignUp";
-import SignUpThankYou from "../Pages/marketing/signUpThankYou/SignUpThankYou";
 import Root from "../Pages/root/root";
 import ErrorPage from "../error-page";
 import AboutUs from "../Pages/aboutUs";
@@ -18,16 +16,9 @@ import Logout from "../Pages/User/logout";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <SignUp />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "testhomepage",
     element: <Root />,
     errorElement: <ErrorPage />,
   },
-  { path: "signup", element: <SignUp /> },
-  { path: "signup-thank-you", element: <SignUpThankYou /> },
   { path: "about-us", element: <AboutUs /> },
   { path: "contact-us", element: <ContactUs /> },
   { path: "cookie-policy", element: <CookiePolicy /> },
