@@ -81,7 +81,7 @@ export default function MyAccount() {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleChangePassword}
             >
-              Change Passord
+              Change Password
             </Button>
           </Box>
         </Box>

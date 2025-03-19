@@ -20,17 +20,24 @@ import ThankYou from "../Pages/User/registration/thankYou/ThankYou";
 import ProtectedRoute from "./ProtectedRoute";
 import DashBoard from "../Pages/User/dashboard/dashBoard";
 import ViewGuestGallery from "../Pages/Gallery/guestGallery/viewGuestGallery";
+import Logout from "../Pages/User/logout";
+import SignUp from "../Pages/marketing/signUp/SignUp";
+import SignUpThankYou from "../Pages/marketing/signUpThankYou/SignUpThankYou";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/testhomepage",
     element: <Root />,
     errorElement: <ErrorPage />,
   },
+  { path: "/", element: <SignUp /> },
+  { path: "signup", element: <SignUp /> },
+  { path: "signup-thank-you", element: <SignUpThankYou /> },
   { path: "about-us", element: <AboutUs /> },
   { path: "contact-us", element: <ContactUs /> },
   { path: "cookie-policy", element: <CookiePolicy /> },
   { path: "login", element: <Login /> },
+  { path: "logout", element: <Logout /> },
   { path: "register", element: <Register /> },
   { path: "select-plan", element: <SelectPlan /> },
   { path: "thank-you", element: <ThankYou /> },
